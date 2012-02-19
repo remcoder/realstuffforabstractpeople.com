@@ -1,0 +1,143 @@
+<!DOCTYPE html >
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1"/>
+    <title>TetraCubes</title>
+    <script src="mootools-core.js"></script>
+    <script src="Element.Transform3d.js"></script>
+    <script src="Cubism.js"></script>
+    
+    <style>
+    body
+    {
+      text-align: center;
+    }
+    
+    #stage
+    {
+      position: relative;
+      margin: auto;
+      width:0;
+      top:250px;
+    }
+
+    .polycube
+    {
+      top: 150px;
+      width: 0;
+      margin: auto; 
+    }
+    
+    .side
+    {
+      opacity: 0.5;
+      -webkit-transition-property: background-color;
+      -webkit-transition-duration: 0.5s;
+      background-color: #DDDDDD;
+      border: 1px solid black;
+    }
+    
+    #I:hover .side
+    {
+      background-color: red;
+    }
+    
+    #L:hover .side
+    {
+      background-color: orange;
+    }
+    
+    #O:hover .side
+    {
+      background-color: yellow; 
+    }
+    #Z:hover .side
+    {
+      background-color: violet;
+    }
+    
+    #a:hover .side
+    {
+      background-color: indigo;
+    }
+    
+    #b:hover .side
+    {
+      background-color: blue;
+    }
+    
+    #T:hover .side
+    {
+      background-color: green;
+    }
+    
+    </style>
+    <script>
+    TetraCubes = {
+        I : [[[1, 1, 1, 1]]],
+        L : [[[1, 1, 1], [0, 0, 1]]],
+        O : [[[1, 1], [1, 1]]],
+        Z : [[[1, 1, 0], [0, 1, 1]]],
+        T : [[[1, 1, 1], [0, 1, 0]]],
+        a : [[[1,1], [1,0]], [[1,0], [0,0]]],
+        b : [[[1,1], [0,1]], [[1,0], [0,0]]]
+    }
+    
+    function TetraCube(name)
+    {
+      return Cubism.PolyCube(stage, TetraCubes[name], size, { "id" : name}, true)
+    }
+    
+    function update()
+    {
+      var unit = 1;
+      $("I").rotateX(0.5*unit).rotateY(unit);
+      $("L").rotateX(-unit).rotateY(0.5*unit);
+      $("O").rotateY(-unit);
+      $("Z").rotateY(unit);
+      $("T").rotateX(unit);
+      $("a").rotateX(unit).rotateY(0.5*unit);
+      $("b").rotateX(-0.5*unit).rotateY(unit);
+    }
+    
+    function animate()
+    {
+      update();
+      animate.delay(30);
+    }
+    function init() {
+      stage = $("stage");
+      
+      Cubism.CreateStage(stage, 1000);
+      TetraCube("I").translateY(-3*size). translateX(-4*size);
+      TetraCube("L").translateY(-3*size);
+      TetraCube("O").translateY(-3*size).translateX(4*size);
+      
+      TetraCube("Z").translateY(0.5*size).translateX(-5*size);
+      TetraCube("a").translateY(0.5*size).translateX(-1.5*size);
+      TetraCube("b").translateY(0.5*size).translateX(1.5*size);
+      TetraCube("T").translateY(0.5*size).translateX(5*size);
+                                       
+      animate();
+    }
+    
+    var stage;
+    var size = 85;
+    window.addEvent("domready", function() {
+      try{
+        init();
+      }
+      catch (e)
+      {
+        alert("Sorry, I don't think your browser supports 3d transforms.. Try Safari to witness the 3d coolness :-) ");
+        throw e;
+      }
+    });
+    </script>
+  </head>
+  <body>
+    <h2>TetraCubes</h2>
+    <div id="stage">
+    </div>
+  </body>
+</html>

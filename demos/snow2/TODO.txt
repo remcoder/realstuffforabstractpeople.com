@@ -1,0 +1,11 @@
+
+
+* measure how many hexes we're drawing per render
+* beta/gamma number input
+  * using presets with thumbnail preview images
+
+* html page with intro and reference to the paper
+* make mouse interaction more responsive (faster euclid2hex)
+
+PDF: http://www.patarnott.com/pdf/SnowCrystalGrowth.pdf
+more: http://webbox.lafayette.edu/~reiterc/gallery_auto.html

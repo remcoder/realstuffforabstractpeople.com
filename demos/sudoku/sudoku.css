@@ -1,0 +1,58 @@
+body
+{
+	text-align: center;
+}
+.title
+{
+  font-size: 200%;
+  text-align: center; 
+}
+
+.sudoku
+{
+  margin: 0 auto 0 auto;
+  xborder: 2px solid black;
+  border-collapse: collapse;
+  font-size: 200%;
+  width: 500px;
+  height: 500px;
+  border: solid 0px transparent;
+}
+
+.sudoku td
+{
+  width: 5%;
+  height: 5%;
+  text-align: center;
+  color: rgba(0,0,0,0.3);
+  -webkit-transition: color 0.3s linear;
+}
+ 
+@media screen and (min-device-width: 481px) { 
+  
+  .sudoku.unloaded td
+  {
+    -webkit-transition: background-color 0.3s linear;
+  }
+
+  .sudoku.loaded td
+  {
+    -webkit-transition: background-color 0.3s linear;
+  }
+
+}
+
+.sudoku .fixed
+{
+  font-weight: bold;
+}
+
+.solveActionContainer
+{
+	xborder: 1px solid red;
+	padding: 20px 20px 20px 20px;
+}
+.solveAction
+{
+	font-size:120%;
+}

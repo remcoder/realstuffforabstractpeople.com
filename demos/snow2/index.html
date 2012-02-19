@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1"/>
+    <title>Snow Simulator</title>
+    <link rel="stylesheet" href="snow.css">
+  </head>
+  <body>
+    <div id="content">
+      <div id="debug"></div>
+      <h1>Snow Crystal Growth</h1>
+      <canvas id="snow">canvas is unsupported</canvas>
+      <br/>
+      <a href="#" id="start_stop">start</a> simulation. take a <a href="#" id="snapshot">snapshot</a>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js"></script> -->
+    <!-- <script src="all-compiled.js"></script>-->
+    
+	
+    <script src="js/utils.js"></script>
+    <script src="js/poly.js"></script>
+    <script src="js/hex_grid.js"></script>
+    <script src="js/snow.js"></script>
+    <script>$(document).ready(function() {
+      Snow.init();
+      
+      $("#start_stop").click(function() {
+        if (Snow.timeout)
+        { 
+          Snow.stop();
+          $(this).text("continue");
+        }
+        else
+        {
+          Snow.start();
+          $(this).text("stop");
+        }
+      });
+      
+      $("#snow").click(function(evt) {
+        var offset = $(this).position();
+        var x = evt.pageX - offset.left;
+        var y = evt.pageY - offset.top;
+        
+        var hex = Snow.flake.euclid2hex( { x:x, y:y } );
+        hex.next.value = 1;
+        
+        //hex.draw(Snow.flake.ctx);
+        Snow.draw();
+      });
+      
+      Snow.draw();
+      
+      //setTimeout(Snow.start ,200);
+    });
+    
+    $("#snapshot").click(function(evt) {
+      var url = $("canvas")[0].toDataURL();
+      $(this).attr("href", url);
+    });
+    </script>
+    
+  </body>
+</html>

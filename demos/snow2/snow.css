@@ -1,0 +1,46 @@
+body
+{
+  xbackground-color:black;
+  background-color:dimgrey;
+  margin:0;
+  color: #DDD;
+  font-family: "verdana";
+}
+#content
+{
+  text-align:center;
+}
+h1
+{
+  xdisplay:inline;
+  xcolor: white;
+  xposition:absolute;
+  margin:0;
+  text-shadow: #444 10px 10px 2px;
+  margin-bottom: 10px;
+  font-weight:normal;
+}
+canvas
+{
+  /* TODO: compensate mouse x,y for border thickness */;
+  xborder: 4px solid dimgrey;
+  xdisplay: block;
+  xmargin: auto;
+  xborder: 2px solid red;
+  border-radius:10px;
+  -webkit-box-shadow: 10px 10px 5px #444;
+  -moz-box-shadow: 10px 10px 5px #444;
+  box-shadow: 10px 10px 5px #444;
+  cursor:crosshair;
+}
+a
+{
+  color: red;
+}
+#debug
+{
+  position:absolute;
+  right: 10px;
+  color: white;
+  border: 2px solid grey;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1"/>
+  <title>Starfield</title>
+  <style>
+body
+{
+  margin: 0;
+  overflow: hidden;
+}
+  </style>
+  <script src="star.js"></script>
+  <script src="starfield.js"></script>
+
+  </head>
+  <body>
+    <canvas id="starfield" onclick="clearTimeout(starfield.timeout);">no canvas</canvas>
+<script>
+
+var starfield = new Starfield ({
+  canvas     : document.getElementById("starfield"),
+  num_stars   : 600,
+  starSize    : 2,
+  opacity     : 0.75, // motionblur = 1 - opacity
+  width       : innerWidth,
+  height      : innerHeight,
+  depth       : 5,
+  speed       : {x:0, y:0, z:-0.045}
+});
+starfield.init();
+starfield.animate();
+</script>
+  </body>
+</html>

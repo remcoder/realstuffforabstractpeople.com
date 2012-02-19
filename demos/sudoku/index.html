@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head>
+<meta name = "viewport" content = "width = 600">
+  <link href="sudoku.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="lib/dom.js"></script>
+  <script type="text/javascript" src="lib/set.js"></script>
+  <script type="text/javascript" src="lib/func.js"></script>
+  <script type="text/javascript" src="lib/debug.js"></script>
+  <script type="text/javascript" src="lib/math2.js"></script>
+  
+  <script type="text/javascript" src="solver.js"></script>
+<title>Sudoku solver</title>
+</head>
+<body>
+  <h2 class="title">Soduku solver</h2>
+  <p>See nothing? Try <a href="?[
+	  [null,null,5,null,null,4,null,null,null]
+	  ,[9,4,null,null,null,null,6,null,null],[8,null,null,2,null,null,null,4,null],[null,7,6,null,9,5,null,null,null],[null,3,9,null,8,null,4,5,null],[null,null,null,7,2,null,9,6,null],[null,2,null,null,null,1,null,null,4],[null,null,8,null,null,null,null,7,6],[null,null,null,8,null,null,2,null,null]]">this one</a> or <a href="?
+	[
+[   7,   4,   8, null,null,null, null,   2,null],
+[   6,null,null, null,null,null, null,null,   7],
+[null,null,   9,    5,   7,   1,    8,   6,   4],
+[null,null,   4,    7,   3,   8, null,null,null],
+[   8,null,null, null,null,null, null,null,   3],
+[null,null,null,    6,   1,   2,    4,null,null],
+[   4,   5,   6,    1,   2,   7,    3,null,null],
+[   2,null,null, null,null,null, null,null,   6],
+[null,   8,null, null,null,null,    1,   4,   2],
+	 ]">this one</a> or <a href="?[
+[null,   9,null, null,null,null, null,null,null],
+[null,null,null,    4,null,   7,    8,null,null],
+[null,   4,   5,    1,null,null,    7,null,null],
+[null,   7,null,    3,   4,   5,    1,   6,null],
+[null,null,null, null,null,null, null,null,null],
+[null,   5,   8,    2,   6,   1, null,   7,null],
+[null,null,   4, null,null,   3,    6,   8,null],
+[   7,null,   2,    8,null,   9, null,null,null],
+[null,null,null, null,null,null, null,   9,null]
+     	 ]">this one</a>.<p>
+       		<button class="solveAction" onclick="solve()">solve!</button>
+
+  <table id="sudoku1" class="sudoku unloaded" border="1" ></table>
+
+	
+
+</body>
+<script>
+var sudoku = eval(replaceAll(location.search.substring(1, location.search.length),"%20", " "));
+var solver = new SudokuSolver(sudoku);
+solver.renderTable($("sudoku1"));
+
+function replaceAll(input, sought, replacement)
+{
+  if (input.indexOf(sought) > 0)
+    return replaceAll(input.replace(sought, replacement), sought, replacement);
+  else
+    return input;
+}
+
+function solve()
+{
+	var before = new Date();
+	if (solver.solve())
+	{
+		var after = new Date();
+		var seconds = (after.getTime() - before.getTime()) /1000;
+		//debug(seconds + " seconds");
+		solver.animate($("sudoku1"));
+		//debug(solver.solution);
+	}
+	else
+	{
+		//debug("failed!");
+	}
+}
+</script>

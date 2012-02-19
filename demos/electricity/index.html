@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1"/>
+		<title>Electricity</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<canvas id="c"></canvas>
+		<script>
+			a=Math.sin,e=Math.cos,f=Math.abs,h=document.getElementById("c");h.width=window.innerWidth;h.height=window.innerHeight;document.body.style.margin="0";document.body.style.overflow="hidden";i=h.getContext("2d"),j=h.width,l=h.height;i.translate(j/2,l/2);m=-l/2,n=-j/2,o=l/2,p=-l/2+l*0.57;i.lineWidth=10;q=[0,1];function r(b){c=+new Date;if(b==0)return e(c/1200)/2*a(c/1600)/4;if(b==1)return a(c/1300)/1.5*e(c/1900)/3.2;if(b==2)return a(c/600)/2}
+    function s(){b=f(q[0]-q[1])%3.14;i.fillStyle=b<0.1||3.14-b<0.1?"rgba(255,255,255,0.4)":"rgba(0,0,0,0.1)";i.fillRect(n*2,m*2,j*2,l*2);for(b=2;b--;){q[b]+=r(b);i.rotate(q[b]);c=b,g=+new Date,d=128+64*f(a(g/100)),k=g/1600;g=128*f(a(k));k=128*f(e(k));if(c==1){c=g;g=d;d=c}i.strokeStyle="rgb("+~~g+","+~~k+","+~~d+")";d=n*1.4;i.beginPath();i.moveTo(d,p);for(c=~~(h.width*0.07);c--;){d+=20;i.lineTo(d,p+Math.random()*200-100)}i.stroke();i.rotate(-q[b]);i.font="48px sans-serif";i.lineWidth=2;i.fillText("electricity - by @remcoder",
+    0,o-20);i.lineWidth=10}setTimeout(s,20)}s(); 
+		</script>
+	</body>
+</html>

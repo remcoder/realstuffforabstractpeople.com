@@ -1,0 +1,12 @@
+PRINCIPLE:
+
+* an animated sudoku solver with backgound colors representing the number of options that are available
+* combined with a non-trivial backtracking alorithm this should result in a lot of dancing colors ;-)
+
+ideas
+-----
+* investigate different algorithms and compare there relative performance
+  * improve current algorithm using arc-consistency (see CSP chapter in AIMA)
+  * local search
+
+* a GUI for input of numbers
