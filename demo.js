@@ -14,7 +14,7 @@ var ttop = -height/2;
 
 ctx.translate(-left,-ttop);
 
-var scale = height/4;
+var scale = height/3;
 
 var rings = 32;
 var ringsize = 30;
@@ -58,11 +58,14 @@ function render(date, ticks) {
   
     ctx.strokeStyle = "#222";//rgb(color,color,color)
     
+    var offsetx = 200;
+    var offsety = -100;
+
     // wobble
-    wx = 0 + sin(z+date/1700) * 70;
-    wy = 0 + cos(z+date/1100) * 70;
-    wxz = 0 + sin(z2+date/1700) * 70;
-    wyz = 0 + cos(z2+date/1100) * 70;
+    wx = offsetx+ sin(z+date/1700) * 70;
+    wy = offsety+ cos(z+date/1100) * 70;
+    wxz = offsetx+ sin(z2+date/1700) * 70;
+    wyz = offsety+ cos(z2+date/1100) * 70;
     multiplier = scale / z;
     multiplier2 = scale / z2;    
     
@@ -118,11 +121,10 @@ window.requestAnimFrame = (function(){
 date = new Date;
 (function animloop(){
   requestAnimFrame(animloop);
+  //setTimeout(animloop,100);
   var newDate = +new Date;
   var ticks = newDate - date;
-  // document.title = ticks;
-  if (ticks)
-    render(date, ticks);
+  render(date, ticks);
   date = newDate;
 })();
 
