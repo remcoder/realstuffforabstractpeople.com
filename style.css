@@ -40,6 +40,7 @@ a img {
   -webkit-transform-style: preserves- 3 d;
 }
 .thumb-container {
+  /*display: none;*/
   width: 256px;
   height: 256px;
   float: left;
@@ -149,4 +150,9 @@ a img {
 {
   margin-top: 7px;
   border-radius:0;
+}
+
+#c 
+{
+  position: fixed;
 }
