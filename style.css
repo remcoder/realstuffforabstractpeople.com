@@ -44,7 +44,7 @@ a img {
 .thumb-container {
   /*display: none;*/
   height: 256px;
-  float: left;
+  /*float: left;*/
   margin-bottom: 50px;
 }
 
@@ -118,7 +118,7 @@ a img {
   border-radius:0;
 }
 
-#c 
+#c
 {
   position: fixed;
 }

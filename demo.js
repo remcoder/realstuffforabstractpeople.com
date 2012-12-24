@@ -58,8 +58,8 @@ function render(date, ticks) {
   
     ctx.strokeStyle = "#222";//rgb(color,color,color)
     
-    var offsetx = 200;
-    var offsety = -100;
+    var offsetx = 0;
+    var offsety = 0;
 
     // wobble
     wx = offsetx+ sin(z+date/1700) * 70;
