@@ -18,16 +18,18 @@ p {
   margin: 0;
   padding: 10px;
 }
+
 h1 {
-  margin: -10px 0px 40px 0px;
-  padding: 50px 10px 10px 10px;
+  margin: -10px 0px 100px 0px;
+  padding: 28px 10px 10px 10px;
   font-size: 28px;
   border-radius: 10px;
   -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 a:hover {
-  color: #f66;
+  color: yellow;
 }
 a img {
   border: 0;
@@ -45,7 +47,7 @@ a img {
   /*display: none;*/
   height: 256px;
   /*float: left;*/
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 
 .thumb {
@@ -62,6 +64,7 @@ a img {
   border-color: rgba(0,0,0,0.5);
   border-radius: 20px;
   -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 
 .thumb + .thumb
@@ -82,11 +85,12 @@ a img {
   padding: 10px 0 5px 0;
   color: rgba(96, 128, 240, 0);
   background-color: rgba(0, 0, 0, 0);
-  color: #60b4f0;
+  color: yellow;
   background-color: rgba(0, 16, 32, 0.8);
   -webkit-backface-visibility: hidden;
   -webkit-transition-property: color, background-color;
   -webkit-transition-duration: 0.5s;
+
 }
 
 .desc {
@@ -121,4 +125,22 @@ a img {
 #c
 {
   position: fixed;
+}
+
+#retrofyme img {
+    width: 370px;
+}
+
+nav {
+    font-size: 20px
+}
+
+footer h1 {
+    margin-top: 100px;
+    margin-bottom: 0px;
+    padding-top: 14px;
+}
+
+footer nav {
+    margin-bottom: 22px;
 }
