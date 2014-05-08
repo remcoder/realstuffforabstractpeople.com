@@ -25,11 +25,3 @@ function querystring( name )
   else
     return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
-
-function getParamFromHash(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.hash);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
