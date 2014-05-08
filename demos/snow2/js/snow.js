@@ -1,15 +1,22 @@
-var DEBUG = +querystring("debug");
-var ZOOM = +querystring("zoom");
-var SHOW_GRID = +querystring("show_grid");
-var HEX_SIZE = +querystring("hex_size");
-var BETA = +querystring("beta");
-var GAMMA = +querystring("gamma");
-var DELTA = +querystring("delta");
-var GENERATIONS = +querystring("generations");
-var STATS = +querystring("stats");
-var VALUES = +querystring("values");
-var COORDS = +querystring("coords");
-var STOP = +querystring("stop");
+var DEBUG       = +getParamFromHash("debug");
+var ZOOM        = +getParamFromHash("zoom");
+var SHOW_GRID   = +getParamFromHash("show_grid");
+var HEX_SIZE    = +getParamFromHash("hex_size");
+var BETA        = +getParamFromHash("beta");
+var GAMMA       = +getParamFromHash("gamma");
+var DELTA       = +getParamFromHash("delta");
+var GENERATIONS = +getParamFromHash("generations");
+var STATS       = +getParamFromHash("stats");
+var VALUES      = +getParamFromHash("values");
+var COORDS      = +getParamFromHash("coords");
+var STOP        = +getParamFromHash("stop");
+
+// NOTE: using the hash to pass params instead of the querystring b/c
+// my python server does a redirect and appends a slash to the 
+// url, effectively breaking the page.
+// So the workaround is to parse the hash as if it was a querystring
+// and to automatically reload the page when the hash changes *sigh*
+window.onhashchange = function () { document.location.reload(); }
 
 function hexDia(size)
 { 
