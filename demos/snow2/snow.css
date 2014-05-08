@@ -1,46 +1,62 @@
-body
-{
-  xbackground-color:black;
+body {
   background-color:dimgrey;
   margin:0;
   color: #DDD;
   font-family: "verdana";
 }
-#content
-{
+
+a {
+  color: #666;
+}
+
+#content {
   text-align:center;
 }
-h1
-{
-  xdisplay:inline;
-  xcolor: white;
-  xposition:absolute;
+
+h1 {
   margin:0;
   text-shadow: #444 10px 10px 2px;
   margin-bottom: 10px;
   font-weight:normal;
 }
-canvas
-{
-  /* TODO: compensate mouse x,y for border thickness */;
-  xborder: 4px solid dimgrey;
-  xdisplay: block;
-  xmargin: auto;
-  xborder: 2px solid red;
+
+canvas {
+  cursor:crosshair;
+}
+
+.wrapper {
+  display: inline-block;
+  position: relative;
   border-radius:10px;
   -webkit-box-shadow: 10px 10px 5px #444;
   -moz-box-shadow: 10px 10px 5px #444;
+  overflow: hidden;
   box-shadow: 10px 10px 5px #444;
-  cursor:crosshair;
+  padding: 0;
+  margin-bottom: 20px;
 }
-a
-{
-  color: red;
+
+.bottom-panel {
+  margin-top: -3px;
+  padding: 20px 0 10px 0;
+  background-color: rgba(255,255,255,0.8);
+  color: #333;
 }
-#debug
-{
+
+#debug {
   position:absolute;
   right: 10px;
-  color: white;
+  background-color: rgba(0,0,0,0.5);
+  color: #ddd;
   border: 2px solid grey;
+}
+
+.reference {
+  display: inline-block;
+  width: 600px;
+  font-size: 80%;
+
+}
+.reference .publication {
+  font-style: italic;
 }

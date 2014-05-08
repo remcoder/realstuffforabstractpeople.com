@@ -40,8 +40,7 @@ canvas[0].height = 600;
 var width = canvas[0].width;
 var height = canvas[0].height;
 
-if (ZOOM)
-{ 
+if (ZOOM) { 
   ctx.scale(1/ZOOM,1/ZOOM);
   //ctx.translate(width * zoom/4,height * zoom/4)
 }
@@ -86,8 +85,7 @@ if (STATS)
     "gen/frame" : generations_per_frame
     });
 
-function color(value)
-{
+function color(value) {
   var c = value <= 1 ? 255 * value : 128 + 128 / (value - 1);
   return "rgb(" + ~~c +","+ ~~c +", 255)";
 }
@@ -130,7 +128,7 @@ var Snow = {
 
       // precompute skips
       if (skip(hex.row, hex.column)) {
-		hex.skip = true;
+		    hex.skip = true;
         continue;
       }
 
@@ -232,8 +230,7 @@ var Snow = {
     Snow.flake.draw();
   },
 
-  render: function()
-  {
+  render: function() {
     var now= +new Date;
     var diff = now - Snow.time;
     var gps = 1000 * Snow.generations / (now - Snow.start_time) ;

@@ -9,9 +9,21 @@
     <div id="content">
       <div id="debug"></div>
       <h1>Snow Crystal Growth</h1>
-      <canvas id="snow">canvas is unsupported</canvas>
-      <br/>
-      <a href="#" id="start_stop">start</a> simulation. take a <a href="#" id="snapshot">snapshot</a>
+      <div class="wrapper">
+
+        <canvas id="snow">canvas is unsupported</canvas>
+        
+        <div class="bottom-panel">
+          <div>
+            <button href="#" id="start_stop">start</button> simulation. 
+            take a <button href="#" id="snapshot">snapshot</button><br>
+          </div>
+          <p class="reference">The algorithm is from<br>
+            <a class="publication" href="http://www.patarnott.com/pdf/SnowCrystalGrowth.pdf">A local cellular model for snow crystal growth</a> <br> 
+            by <a class="author" href="http://webbox.lafayette.edu/~reiterc/">Clifford A. Reiter</a>
+          </p>
+        </div>
+      </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
@@ -40,7 +52,7 @@
       });
       
       $("#snow").click(function(evt) {
-        var offset = $(this).position();
+        var offset = $(this).offset();
         var x = evt.pageX - offset.left;
         var y = evt.pageY - offset.top;
         
@@ -58,7 +70,8 @@
     
     $("#snapshot").click(function(evt) {
       var url = $("canvas")[0].toDataURL();
-      $(this).attr("href", url);
+      // $(this).attr("href", url);
+      location.href = url;
     });
     </script>
     
