@@ -5,13 +5,9 @@ body {
   font-family: "verdana";
 }
 
-a {
-  color: #666;
-}
+a { color: #666; }
 
-#content {
-  text-align:center;
-}
+#content { text-align:center; }
 
 h1 {
   margin:0;
@@ -20,9 +16,22 @@ h1 {
   font-weight:normal;
 }
 
-canvas {
-  cursor:crosshair;
+.controls {
+  position: absolute;
+  text-align: left;
+  background-color: rgba(0,0,0,0.2);
+  padding: 5px;
+  border-radius: 5px;
 }
+
+.controls:hover { background-color: rgba(0,0,0,0.5); }
+
+.controls.top     { top: 10px; }
+.controls.left    { left: 10px; }
+.controls.right   { right: 10px; }
+.controls.bottom  { bottom: 10px; }
+
+canvas { cursor:crosshair; }
 
 .wrapper {
   display: inline-block;
@@ -35,6 +44,8 @@ canvas {
   padding: 0;
   margin-bottom: 20px;
 }
+
+.offset { position: relative; }
 
 .bottom-panel {
   margin-top: -3px;
@@ -55,8 +66,8 @@ canvas {
   display: inline-block;
   width: 600px;
   font-size: 80%;
+}
 
-}
-.reference .publication {
-  font-style: italic;
-}
+.reference .publication { font-style: italic; }
+
+input[type=number] { width: 50px; }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1"/>
@@ -10,14 +10,22 @@
       <div id="debug"></div>
       <h1>Snow Crystal Growth</h1>
       <div class="wrapper">
-
-        <canvas id="snow">canvas is unsupported</canvas>
-        
-        <div class="bottom-panel">
-          <div>
-            <button href="#" id="start_stop">start</button> simulation. 
-            take a <button href="#" id="snapshot">snapshot</button><br>
+        <div class="offset">
+          <div class="controls top left">
+              <button href="#" id="start_stop">start</button> simulation. 
+          </div>    
+          <div class="controls top right">
+              take a <button href="#" id="snapshot">snapshot</button>  
+          </div>    
+          <div class="controls bottom left">
+            β <input id="beta" type=number min=0 max=1 step=0.05 title="background level" /><br/>
+            γ <input id="gamma" type=number min=0 max=1 step=0.001 title="water influx coefficient" />
           </div>
+
+          <canvas id="snow">canvas is unsupported</canvas>
+        </div>
+
+        <div class="bottom-panel">
           <p class="reference">The algorithm is from<br>
             <a class="publication" href="http://www.patarnott.com/pdf/SnowCrystalGrowth.pdf">A local cellular model for snow crystal growth</a> <br> 
             by <a class="author" href="http://webbox.lafayette.edu/~reiterc/">Clifford A. Reiter</a>
@@ -26,10 +34,7 @@
       </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js"></script> -->
-    <!-- <script src="all-compiled.js"></script>-->
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	
     <script src="js/utils.js"></script>
     <script src="js/poly.js"></script>
@@ -73,6 +78,13 @@
       // $(this).attr("href", url);
       location.href = url;
     });
+
+    $("#beta")
+      .val(beta)
+      .on("change", function(e) { beta = +e.target.value; });
+    $("#gamma")
+      .val(gamma)
+      .on("change", function(e) { gamma = +e.target.value; });;
     </script>
     
   </body>
