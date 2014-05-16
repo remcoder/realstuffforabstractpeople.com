@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/typescript/tests/Tests.js" />
+        <item url="file://$PROJECT_DIR$/typescript/tests/Tests.js" />
+        <item url="file://$PROJECT_DIR$/typescript/Cubism.Voxel.js" />
+        <item url="file://$PROJECT_DIR$/typescript/solver.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/typescript/tests/Tests.js" />
+      <root url="file://$PROJECT_DIR$/typescript/tests/Tests.js" />
+      <root url="file://$PROJECT_DIR$/typescript/Cubism.Voxel.js" />
+      <root url="file://$PROJECT_DIR$/typescript/solver.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

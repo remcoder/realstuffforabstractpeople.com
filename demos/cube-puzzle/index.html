@@ -1,0 +1,93 @@
+  <!DOCTYPE html >
+<html>
+  <head>
+    <title>Cube Puzzle</title>
+    
+    <link rel="stylesheet" href="cubism.css"/>
+    <style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+    table {
+        margin: auto;
+    }
+    .shape_a .voxel-side
+    {
+      background-color: rgb(1, 67, 236);
+    }
+    
+    .shape_b .voxel-side
+    {
+      background-color: rgb(72, 0, 128);
+    }
+    
+    .shape_c .voxel-side
+    {
+      background-color: #fa0; 
+    }
+    .shape_d .voxel-side
+    {
+      background-color: #8f8;
+    }
+    
+    .shape_e .voxel-side
+    {
+      background-color: pink;
+    }
+
+    .shape_f .voxel-side
+    {
+      background-color: lightgrey;
+    }
+
+    .plane .voxel-side {
+        display: none;
+    }
+
+    .xy-plane .front {
+        display: block;
+    }
+
+    .yz-plane .right {
+        display: block;
+    }
+
+    .xz-plane .bottom {
+        display: block;
+    }
+
+    .yz-plane .voxel-side {
+        background-color: #f8f8f8;
+    }
+
+    .xy-plane .voxel-side {
+        background-color: #ddd;
+    }
+    
+    </style>
+  </head>
+  <body>
+    <h2>Hey Russ, here's your darn puzzle</h2>
+    <div class="voxel-shape-container"></div>
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="typescript/utils.js"></script>
+    <script src="typescript/Element.Transform3d.js"></script>
+
+    <script src="typescript/Cubism.Point.js"></script>
+    <script src="typescript/Cubism.PointSet.js"></script>
+    <script src="typescript/Cubism.Voxel.js"></script>
+    <script src="typescript/Cubism.Shape.js"></script>
+    <script src="typescript/solver.js"></script>
+    <script src="typescript/tests/Tests.js"></script>
+    <script>$(document).ready(function() {
+        //Tests.run();
+        var before = +new Date;
+        var s = Solver.solve();
+        console.log(new Date - before, "ms passed");
+        console.log(s);
+        Solver.animateSolution(s);
+    });</script>
+
+  </body>
+</html>

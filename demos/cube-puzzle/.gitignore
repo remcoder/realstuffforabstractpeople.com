@@ -1,0 +1,5 @@
+*.js.map
+typescript/*.js
+tests/*.js
+tests/*.js
+Tests.js
