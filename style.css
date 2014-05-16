@@ -14,6 +14,7 @@ a {
 h1 a {
   text-decoration: underline;
 }
+
 p {
   margin: 0;
   padding: 10px;
@@ -72,6 +73,10 @@ a img {
   margin-left: 30px;
 }
 
+.thumb a {
+  color: yellow;
+}
+
 .title {
   position: absolute;
   display: block;
@@ -127,12 +132,16 @@ a img {
 }
 
 #retrofyme img {
-    width: 370px;
+  width: 370px;
 }
 
-nav {
-    font-size: 20px
+#q42 img {
+  width: 176px;  
+  margin:auto;
+  display:block;
 }
+
+nav { font-size: 20px }
 
 footer h1 {
     margin-top: 100px;
