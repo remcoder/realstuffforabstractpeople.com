@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      flooder - flood-it solver
+    </title>
+    <link href="common.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/mootools-1.2.1-core-yc.js"></script>
+    <script type="text/javascript" src="js/mootools-1.2.2.2-more.js"></script>
+    <script type="text/javascript" src="js/array_utils.js"></script>
+    <script type="text/javascript" src="js/timer.js"></script>
+    <script type="text/javascript" src="js/cell.js"></script>
+    <script type="text/javascript" src="js/colormatrix.js"></script>
+    <script type="text/javascript">
+var solvers = new Hash();
+    </script>
+    <script type="text/javascript" src="js/solver_random.js">
+</script>
+    <script type="text/javascript" src="js/solver_rotatingcolors.js">
+</script>
+    <style type="text/css">
+label
+    {
+    font-size:80%;
+    }
+    .section {
+    text-align: center;
+    }
+    .note
+    {
+    font-size: 80%;
+    }
+    .flooderbox {
+    border: 2px solid #aaaaaa;
+    margin: auto;
+    width: 336px;
+    }
+    .flooder {
+
+    border-collapse: collapse;
+    width: 336px;
+    height: 336px;
+    }
+    .flooder td 
+    {
+    xwidth: 24px;
+    xheight: 24px;
+    x-webkit-transition: background-color 0.1s linear;
+    }
+
+    .red
+    {
+    background-color: rgb(220, 74, 32);
+    }
+
+    .blue 
+    {
+    background-color: rgb(70, 177, 226);
+    }
+
+    .pink 
+    {
+    background-color: rgb(237, 112, 161); 
+    }
+
+    .yellow
+    {
+    background-color: rgb(243, 246, 29);
+    }
+
+    .green
+    {
+    background-color: rgb(126, 157, 30); 
+    }
+
+    .purple
+    {
+    background-color: rgb(96, 92, 168);
+    }
+    </style>
+  </head>
+  <body>
+    <div class="section">
+      <h1>
+        Flooder: a flood-it solver
+      </h1><label for="size">size</label> <select name="size" onchange="reset(parseInt(this.value)); return false;">
+        <option>
+          14
+        </option>
+        <option>
+          21
+        </option>
+        <option>
+          28
+        </option>
+      </select>
+      <div id="flooderbox" class="flooderbox">
+        <table id="flooder1" class="flooder"></table>
+      </div>
+      <div>
+        <label for="solver">solver</label> <select id="solver" name="solver">
+        </select> <button onclick="solve($('solver').value); return false;">solve!</button> <button onclick="matrix.stop(); reset(matrix.size); return false;">reset</button>
+      </div>
+      <!-- <div><label>write your own solver:</label> <input type="submit" value="open javascript editor" onclick="window.open('editor', '_blank'); return false;"/></div>
+      <p class="note">
+        for fading color effects use Safari 4 or Chrome 2
+      </p> -->
+      <div id="stats"> </div>
+      <img id="chart" name="chart">
+    </div>
+    <script type="text/javascript">
+var table = $("flooder1");
+var chart = $("chart");
+var matrix;
+
+function registerSolvers()
+{
+  $("solver").innerHTML = "";
+
+  solvers.getKeys().each(function(name) {
+    var option = new Element("option");
+    option.text = name;
+    option.inject($("solver"));
+  })
+}
+
+function reset(size){
+  matrix = new ColorMatrix(table, size, chart); 
+}
+
+function solve(solverName) {
+  var solverClass = solvers.get(solverName);
+  var solver = new solverClass();
+  matrix.attachSolver(solver);
+  matrix.solve();
+}
+
+reset(14);  
+registerSolvers();
+    </script>
+    
+  </body>
+</html>

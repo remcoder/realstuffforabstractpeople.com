@@ -1,0 +1,64 @@
+body {
+  font-family: arial;
+  xbackground-color: #aaaaff;
+  xposition:static;
+  background-image: url('images/escher.gif');
+  background-attachment: fixed;
+}
+.pageTitle
+{
+  padding: 20px;
+  xpadding-top: 0;
+  width: 700px;
+  margin: auto;
+  text-align: center;
+}
+.section {
+  padding: 0 20px 0px 20px;
+  background-color: white;
+  width: 700px;
+  margin: auto;
+  margin-bottom: 20px;  
+  border: 1px solid #dddddd;
+}
+.screenshot {
+  border: 2px solid #888888;
+  margin: 0px 0px 10px 10px;
+}
+.note
+{
+  color: #888888;
+  font-style: italic;
+}
+.note a
+{
+  color: #888888;
+}
+.update
+{
+  background-color: #ffffaa;
+  border: 2px solid #ffff44;
+  padding: 0px 10px 10px 10px;
+}
+.new
+{
+  background-color: #ffffaa;
+  border: 2px solid #ffff44;
+  color: red;
+  font-weight: bold;
+  font-size: 80%;
+}
+a.rss
+{
+  background-image: url(http://static.twitter.com/images/rss.gif);
+  
+  background-repeat: no-repeat;
+  background-position-y: 50%;
+  padding: 0.5em 0px 0.5em 20px;
+
+  
+}
+.blog-date
+{ 
+  font-weight: bold;
+}
