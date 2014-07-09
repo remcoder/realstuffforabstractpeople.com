@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<head>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+	<link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+	<link href="sudoku.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="lib/vue.min.js"></script>
+	<script type="text/javascript" src="lib/set.js"></script>
+	<script type="text/javascript" src="lib/math2.js"></script>
+	<script type="text/javascript" src="solver.js"></script>
+    <script type="text/javascript" src="sudokus.js"></script>
+<title>Sudoku Colors</title>
+</head>
+<body>
+  	<h2 class="title">Sudoku Colors</h2>
+  	<div id="sudoku1"
+  		class="sudoku" 
+  		v-on="keypress : update, keydown : beforeRemove, keyup: afterRemove">
+  	</div>
+	
+	<div class="buttons">
+			<button class="solveAction" v-on="click : newSudoku">new</button>
+			<button class="solveAction" 
+				v-on="click: solve" 
+				
+				v-attr="disabled : state != 'initial' && 'disabled'">solve</button>
+			<button class="solveAction"
+			v-on="click : reset"
+			>reset</button>
+	</div>
+	<div>
+		<p>
+			Each cell is colored dynamically, based on the number of filled in cells in its row (red), column (blue) and quadrant (green). This gives each sudoku a unique color pattern.
+            Also whenever a number is added, the colors change accordingly. So when there are no more valid options, everything is white and you have completed the sudoku.
+			
+			<!-- <br>
+			<br>
+			examples:
+			try
+			<a href="#{{examples[0]}}"> this one</a>
+			or
+			<a href="#{{examples[1]}}"> this one</a>
+			or
+			<a href="#{{examples[2]}}"> this one</a> -->
+		</p>
+    </div>
+
+</body>
+<script>
+// var examples = [
+// 	"__5__4___94____6__8__2___4__76_95____39_8_45____72_96__2___1__4__8____76___8__2__",
+// 	"748____2_6_______7__9571864__4738___8_______3___6124__4561273__2_______6_8____142",
+// 	"_9__________4_78___451__7___7_34516___________58261_7___4__368_7_28_9__________9_",
+//  "1__78__2______1_35___5_2_7__6____98__193_754__32____6__7_8_9___34_6______8__13__4"];
+
+var title = document.querySelector(".title");
+var flickerStart = new Date();
+
+title.classList.add("glowing");
+(function flicker() {
+    var duration = new Date() - flickerStart;
+    if (duration > 4000) {
+        title.classList.add("glowing");
+    }
+    else {
+        var r3 = Math.random() * Math.random() * Math.random();
+        title.classList.toggle('glowing', r3 * duration / 4000 > 0.10 );
+
+        setTimeout(flicker, 32);
+    }
+}());
+
+var table = document.querySelector("#sudoku1");
+var solver = new SudokuSolver(table);
+var button = document.querySelectorAll(".solveAction")[2];
+var tempValue;
+
+var vm = new Vue({
+    el: 'body',
+    data: {
+
+    	state : "initial", 
+        examples: sudokus
+    },
+
+    methods :  {
+    	init: function(s) {
+    		this.$data.state = 'initial';
+    		solver.init(s);
+    	},
+
+    	newSudoku : function() {
+    		do {
+    			var sudoku = randomSudoku();
+    		} while (solver.sudokuString == sudoku)
+    		location.hash = "#" + sudoku;
+    	},
+
+    	update : function(evt) {
+    		// console.log(evt.keyCode);
+
+    		if ( evt.keyCode < 49 || evt.keyCode > 57 ) {
+    			evt.preventDefault();
+    			return;
+    		}
+
+    		function validSelection() {
+    			return window.getSelection().toString() == evt.target.value;
+    		}
+
+    		// cell already contains a value (unless the content of the input is selected)
+    		if ( evt.target.value.length && !validSelection() ) {
+    			evt.preventDefault();
+    			return;
+    		}
+
+    		var cell = evt.target.parentNode;
+    		var row = cell.parentNode;
+    		var value = String.fromCharCode(evt.keyCode);
+    		
+    		solver.updateCell(+value, row.rowIndex, cell.cellIndex);
+
+    		// focus next input
+    		var cell = evt.target.parentNode;
+    		var row = cell.parentNode;
+    		var nextIndex = 9 * row.rowIndex + cell.cellIndex;
+
+    		do {
+    		 	nextIndex = (nextIndex + 1) % 81 ;
+    			var nextCell = table.rows[Math.floor(nextIndex / 9)].cells[nextIndex%9];
+    			var input = nextCell.querySelector("input");
+    		} while (!input);
+
+    		setTimeout(function() {
+    			if (input.value) // select the contents of the textbox
+    				input.setSelectionRange(0, input.value.length);
+    			else
+    				input.focus();	
+    			
+    		},0);
+    		
+    	},
+
+    	beforeRemove : function(evt) {
+    		// console.log(evt.keyCode)
+    		if (evt.keyCode == 8 || evt.keyCode == 46)
+    			tempValue = evt.target.value;
+    	},
+
+    	afterRemove : function(evt) {
+    		// console.log(evt.keyCode)
+    		if (evt.keyCode == 8 || evt.keyCode == 46 && tempValue) {
+    			if (evt.target.value.length < tempValue.length) {
+    				// console.log(tempValue, "deleted");
+    				var cell = evt.target.parentNode;
+    				var row = cell.parentNode;
+    				solver.updateCell(null, row.rowIndex, cell.cellIndex);
+    			}
+
+    			tempValue = null;
+    		}
+    	},
+
+    	solve: function() {
+			solver.init(); // restart this sudoku to initial state
+			this.$data.state = 'solving';
+			var before = new Date();
+			solver.solve();
+			var after = new Date();
+
+			this.$data.state = 'animating';
+			console.log(after - before + " ms");
+			solver.animate(function() {
+				this.$data.state = 'solved';
+			}.bind(this));
+		},
+
+		reset: function() {
+			this.$data.state = 'initial';
+			solver.init();
+		}
+    }
+});
+
+
+
+window.onload = window.onhashchange = function() {
+	if (!location.hash)
+		location.hash = "#" + randomSudoku();
+	else
+		vm.init(location.hash.substring(1));
+}
+
+function randomSudoku() {
+    return sudokus[Math.floor(Math.random() * sudokus.length)];
+}
+
+</script>

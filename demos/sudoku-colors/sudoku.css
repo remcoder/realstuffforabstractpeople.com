@@ -1,0 +1,176 @@
+html,body {
+  width: 100%;
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+}
+
+body {
+  font-family: 'Lucida Grande';
+	text-align: center;
+  margin: 0;
+  /*background-color: #555;*/
+  background:
+    radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+  background-color:#333;
+  background-size:16px 16px;
+}
+
+.title {
+  margin: 0px 0 10px 0;
+  font-family: 'Rock Salt', cursive;
+  font-size: 240%;
+  text-align: center; 
+  color: #999;
+  
+  font-weight: normal;
+  height: 77px;
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+}
+
+.title.glowing {
+  text-shadow: rgba(255, 255, 0, 1) 0px 0px 20px;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-name: pulsingglow;
+
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: pulsingglow;
+
+  -moz-animation-duration: 2s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-direction: alternate;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-name: pulsingglow;
+}
+
+@-webkit-keyframes pulsingglow {
+  from {
+    color: yellow;
+    text-shadow: rgba(255, 255, 0, 1) 0px 0px 40px;
+  }
+
+  to {
+    color: #990;
+    text-shadow: rgba(255,255,0, 0) 0px 0px 40px;
+  }
+}
+
+@-moz-keyframes pulsingglow {
+  from {
+    color: yellow;
+    xtext-shadow: rgba(255, 255, 0, 1) 0px 0px 40px;
+  }
+
+  to {
+    color: #990;
+    xtext-shadow: rgba(255,255,0, 0) 0px 0px 40px;
+  }
+}
+
+p {
+  position: relative;
+  display: inline-block;
+  
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-align: left;
+
+  width: 430px;
+  box-sizing: border-box; 
+
+  font-size: 95%;
+
+  background-color: #ddd;
+  color: #333;
+  border: 1px solid black;
+  border-radius: 3px;
+  box-shadow: rgba(0,0,0,0.5) 4px 4px 4px;
+}
+
+.sudoku {
+  margin: 0 auto 0 auto;
+  
+  font-size: 200%;
+  width: 436px;
+  height: 452px;
+  border-spacing: 2px;
+}
+
+.sudoku .cell {
+  position: absolute;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  border: 1px solid black;
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: rgba(0,0,0,0.5) 4px 4px 4px;
+}
+
+.sudoku .smooth {
+  transition: background-color 0.3s linear, color 0.3s linear;
+  -webkit-transition: background-color 0.3s linear, color 0.3s linear;
+  -moz-transition: background-color 0.3s linear, color 0.3s linear;
+}
+
+.sudoku .fixed {
+  font-weight: bold;
+}
+
+.sudoku .fixed, .sudoku .variable {
+  width: 22px;
+  background-color: transparent;
+  font-size: inherit;
+  border: 0;
+}
+
+.sudoku .variable:focus {
+  outline: none;
+}
+
+.buttons {
+  margin-top: 30px;
+  margin-bottom:10px;
+  text-align: center;
+}
+
+.solveAction {
+	font-size:120%;
+  background-color: #999;
+  color: #333;
+  border: 0;
+  border-radius: 6px;
+  padding: 5px 15px;
+  box-shadow: rgba(0,0,0,0.5) 4px 4px 4px;
+}
+
+.solveAction[disabled] {
+  /*opacity: 0.5 !important;*/
+  /*background-color: #555 !important;*/
+  background-color: rgba(143,143,143,0.5)
+  /*color: #333 !important; */
+}
+
+.solveAction:hover {
+  color: #cc0;
+}
+
+.solveAction:active {
+  background-color: #333;
+}
+
+.solveAction:focus, .solveAction:active {
+  outline: 0;
+} 

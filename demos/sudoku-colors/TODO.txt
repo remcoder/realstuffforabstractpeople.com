@@ -1,0 +1,9 @@
+TODO
+
+- the text-shadow animation in the title makes everything very slow in FF and on the Nexus
+	- we can try not animating the textshadow property and using an extra element for the glow.
+	  that way the text-shadow can be static and we can animate using opacity alone
+- on the ipad the variable numbers are not centered
+- on the Nexus there is an initial sluggishness when the solution is animated.
+- the sudoku not precisely centered
+- I broke cursor going to the next cell

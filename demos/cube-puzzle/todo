@@ -1,0 +1,44 @@
+demo page / blog post
+- setup
+  - base layout
+  - google analytics
+  - twitter / facebook / google+
+
+- present original problem
+  - link to Thingiverse: http://www.thingiverse.com/thing:39468
+  - photo of the all the pieces
+
+- render pieces individually with Cubism
+  - on hover or tap, rotate the piece around 2 axes, with 1 rotation being 2/3 as fast as the other (combined rotation has a period of three)
+  - tell something about Element.Transform3d.js
+  - tell something about Cubism Voxels
+
+- data representation
+  - Point, PointSet
+    - operations: rotate by 90 degrees, translate
+  - bit string (also integer limit)
+
+- solving
+  - finding all 24 rotations (mention cube symmetries)
+  - finding all translations (mention boundingCuboid)
+  - explain deph-first search and the datastructure for the solution
+
+- optimizations
+  - precompute the piece placements
+  - largest pieces first
+  - first piece doesn't need to be rotated (24 rotational symmetries of the cube) so that cuts down on the search space by a factor of 24
+  - first piece only has three possible translations
+
+finishing it
+  - make demo work in all browsers that support 3d css
+  - provide alternate visualizations (animating gifs?) for other browsers
+
+
+Cubism features that we need;
+- combine 2 shapes into 1:
+  Shape.Combine(shape2);
+  Better than plotting 2 shapes ontop of each other b/c it will result in rendering glitches and degrades performance.
+  So to plot both a puzzle piece and its containing cuboid, both shapes can be merged such that the voxels of the puzzle piece 'win'. ie the container shape will lose the voxels for the voxels in the puzzle piece with the same coords.
+
+also
+- transform side directly, instead of via their .voxel parent. should be faster
