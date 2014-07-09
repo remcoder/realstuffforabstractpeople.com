@@ -36,24 +36,22 @@ function hsl(h,s,l) { return "hsl("+Math.floor(h)+","+(100*s)+"%,"+(100*l)+"%)" 
 function render(date, ticks) {
   
   ctx.fillStyle = "black";
-  ctx.fillRect(left,ttop,width,height);
-  
+  ctx.clearRect(left,ttop,width,height);
 
   zshift-=zstep/3 * ticks / 200;
-  if (zshift < 0) 
-  { 
+  if (zshift < 0)  
     zshift += zstep;
-  };
   
   var zr=rings;
-  while ( zr--)
-  { 
+  while ( zr--) { 
     
     if (zr < 1) continue;
     var z = zr * zstep + zshift;
     var z2 = (zr-1) * zstep + zshift;
     ctx.fillStyle = hsl((date/110 + 10*z)%360,0.5,0.2); //rgb(32,32,64);
-
+    if (rings - zr == 1)
+      document.body.style.backgroundColor = ctx.fillStyle;
+    
     var color = 255 * (0.7 - z / (rings*zstep));
   
     ctx.strokeStyle = "#222";//rgb(color,color,color)
@@ -71,8 +69,7 @@ function render(date, ticks) {
     
     ctx.beginPath();
 
-    for (var r=0 ; r<ringsize ; r++)
-    {
+    for (var r=0 ; r<ringsize ; r++) {
       t = r*tstep + Math.PI + sin(date/3700); // includes roll
       
       x = wx + cos(t) * multiplier;
@@ -103,6 +100,8 @@ function render(date, ticks) {
     ctx.fill();
     ctx.stroke();
   }
+
+  
 }
 
 // shim layer with setTimeout fallback
