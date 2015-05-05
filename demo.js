@@ -49,9 +49,11 @@ function render(date, ticks) {
     var z = zr * zstep + zshift;
     var z2 = (zr-1) * zstep + zshift;
     ctx.fillStyle = hsl((date/110 + 10*z)%360,0.5,0.2); //rgb(32,32,64);
+    
+    // make the background of the page match the end of the tunnel
     if (rings - zr == 1)
       document.body.style.backgroundColor = ctx.fillStyle;
-    
+
     var color = 255 * (0.7 - z / (rings*zstep));
   
     ctx.strokeStyle = "#222";//rgb(color,color,color)
